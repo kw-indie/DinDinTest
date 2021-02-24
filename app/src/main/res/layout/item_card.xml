@@ -6,6 +6,7 @@
 	android:layout_marginBottom="@dimen/rv_item_spacing"
 	android:layout_marginEnd="@dimen/rv_item_spacing"
 	android:layout_marginStart="@dimen/rv_item_spacing"
+	android:padding="@dimen/rv_item_spacing"
 	app:cardCornerRadius="@dimen/rv_item_corner_radius">
 
 	<androidx.constraintlayout.widget.ConstraintLayout

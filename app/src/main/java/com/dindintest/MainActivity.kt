@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updateMarginsRelative
 import androidx.viewpager2.widget.ViewPager2
 import com.dindintest.ui.main.SectionsPagerAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -20,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main)
+        setContentView(R.layout.activity_main)
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
         window.statusBarColor = 0
@@ -35,13 +34,20 @@ class MainActivity : AppCompatActivity() {
         findViewById<View>(R.id.root_layout).apply {
             ViewCompat.setOnApplyWindowInsetsListener(this) { view, insets ->
                 val navBarInsets = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
-                val orientation = view.context.resources.configuration.orientation
+                val config = view.context.resources.configuration
                 val lp = view.layoutParams as ViewGroup.MarginLayoutParams
-                if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    lp.updateMarginsRelative(bottom = navBarInsets.bottom)
-                } else {
-                    lp.updateMarginsRelative(end = navBarInsets.right)
+                when {
+                    config.orientation == Configuration.ORIENTATION_PORTRAIT -> {
+                        lp.bottomMargin = navBarInsets.bottom
+                    }
+                    config.layoutDirection == View.LAYOUT_DIRECTION_LTR -> {
+                        lp.rightMargin = navBarInsets.right
+                    }
+                    else -> {
+                        lp.leftMargin = navBarInsets.right
+                    }
                 }
+                setOnApplyWindowInsetsListener(null)
                 WindowInsetsCompat.CONSUMED
             }
         }
@@ -51,6 +57,12 @@ class MainActivity : AppCompatActivity() {
                 Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE)
                     .setAction("Action", null)
+                    .apply {
+                        ViewCompat.setOnApplyWindowInsetsListener(view) { _, _ ->
+                            setOnApplyWindowInsetsListener(null)
+                            WindowInsetsCompat.CONSUMED
+                        }
+                    }
                     .show()
             }
         }
