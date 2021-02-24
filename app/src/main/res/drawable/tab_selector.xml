@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:id="@+id/selected"
+		android:drawable="@drawable/dot"
+		android:state_selected="true" />
+	<item
+		android:id="@+id/def"
+		android:drawable="@drawable/dot" />
+	<transition
+		android:drawable="@drawable/anim_dot_scale_up"
+		android:fromId="@id/def"
+		android:toId="@id/selected" />
+	<transition
+		android:drawable="@drawable/anim_dot_scale_down"
+		android:fromId="@id/selected"
+		android:toId="@id/def" />
+</animated-selector>
