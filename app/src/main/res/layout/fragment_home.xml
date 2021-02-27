@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+	<androidx.coordinatorlayout.widget.CoordinatorLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<androidx.constraintlayout.motion.widget.MotionLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			app:layoutDescription="@xml/main_scene">
+
+			<androidx.viewpager2.widget.ViewPager2
+				android:id="@+id/featured_ads"
+				android:layout_width="match_parent"
+				android:layout_height="0dp"
+				app:layout_constraintHeight_percent=".75"
+				app:layout_constraintTop_toTopOf="parent"
+				tools:background="#346" />
+
+			<com.google.android.material.tabs.TabLayout
+				android:id="@+id/featured_ad_dots"
+				android:layout_width="match_parent"
+				android:layout_height="20dp"
+				android:layout_marginBottom="@dimen/app_title_margin"
+				android:background="@null"
+				app:layout_constraintBottom_toBottomOf="@id/featured_ads"
+				app:tabBackground="@drawable/dot_anim_selector"
+				app:tabGravity="center"
+				app:tabIndicatorHeight="0dp"
+				app:tabMaxWidth="20dp" />
+
+			<TextView
+				android:id="@+id/app_title"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="@dimen/app_title_margin"
+				android:gravity="center"
+				android:minHeight="?actionBarSize"
+				android:text="@string/app_name"
+				android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="@id/featured_ads" />
+
+			<com.google.android.material.tabs.TabLayout
+				android:id="@+id/menu_tabs"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/menu_tabs_height"
+				android:layout_marginTop="@dimen/menu_corner_radius_neg"
+				android:background="@drawable/menu_corners"
+				app:layout_constraintTop_toBottomOf="@id/featured_ads"
+				app:tabIndicatorHeight="0dp" />
+
+			<androidx.viewpager2.widget.ViewPager2
+				android:id="@+id/menus"
+				android:layout_width="match_parent"
+				android:layout_height="0dp"
+				android:background="?attr/colorSurface"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/menu_tabs" />
+		</androidx.constraintlayout.motion.widget.MotionLayout>
+
+		<com.google.android.material.floatingactionbutton.FloatingActionButton
+			android:id="@+id/fab_open_cart"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom|end"
+			android:layout_margin="@dimen/fab_margin"
+			app:srcCompat="@drawable/ic_cart" />
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

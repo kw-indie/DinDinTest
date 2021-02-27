@@ -26,6 +26,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    buildFeatures {
+        dataBinding true
+    }
+    def javaVer = '1.8'
     compileOptions {
         coreLibraryDesugaringEnabled true
 
@@ -36,6 +40,9 @@ android {
         useIR = true
         jvmTarget = javaVer
     }
+}
+kapt {
+    correctErrorTypes = true
 }
 
 dependencies {
@@ -51,11 +58,20 @@ dependencies {
     implementation "androidx.vectordrawable:vectordrawable-animated:1.1.0"
     implementation "androidx.activity:activity-ktx:1.3.0-alpha03"
     implementation "androidx.fragment:fragment-ktx:1.3.0"
+    def navVer = "2.3.3"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navVer"
+    implementation "androidx.navigation:navigation-ui-ktx:$navVer"
     def lifecycleVer = "2.3.0"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVer"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVer"
     // implementation 'com.airbnb.android:mavericks:2.0.0'
     implementation 'com.airbnb.android:mvrx-rxjava2:2.0.0-beta3'
+    def epoxyVer = '4.4.1'
+    // Add the annotation processor if you are using Epoxy's annotations (recommended)
+    implementation "com.airbnb.android:epoxy:$epoxyVer"
+    implementation "com.airbnb.android:epoxy-databinding:$epoxyVer"
+    kapt "com.airbnb.android:epoxy-processor:$epoxyVer"
+    implementation 'io.coil-kt:coil:1.1.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

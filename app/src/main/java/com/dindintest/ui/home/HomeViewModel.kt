@@ -1,4 +1,4 @@
-package com.dindintest.ui.main
+package com.dindintest.ui.home
 
 import com.airbnb.mvrx.BaseMvRxViewModel
 import com.airbnb.mvrx.MavericksViewModelFactory

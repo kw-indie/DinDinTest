@@ -17,6 +17,12 @@
 		<item name="windowNoTitle">true</item>
 	</style>
 
+	<style name="Widget.MaterialComponents.Chip.Filter.Outlined" parent="Widget.MaterialComponents.Chip.Filter">
+		<item name="chipBackgroundColor">@color/chip_outlined_bg_color</item>
+		<item name="chipStrokeColor">@color/chip_outlined_stroke_color</item>
+		<item name="chipStrokeWidth">1dp</item>
+	</style>
+
 	<style name="Theme.DinDinTest.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
 	<style name="Theme.DinDinTest.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

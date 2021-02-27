@@ -169,23 +169,23 @@ class FoodRepo {
 	private val cartItemMap = mutableMapOf<Long, Int>()
 	private var cartNote = ""
 
-	fun getFeaturedAds() = Observable.fromCallable {
+	fun getFeaturedAds(): Observable<List<FeaturedAd>> = Observable.fromCallable {
 		Thread.sleep(syntheticDelay)
 		featuredAds
 	}.subscribeOn(Schedulers.io())
 
-	fun getMenus() = Observable.fromCallable {
+	fun getMenus(): Observable<List<Menu>> = Observable.fromCallable {
 		Thread.sleep(syntheticDelay)
 		menus
 	}.subscribeOn(Schedulers.io())
 
-	fun addToCartOrUpdate(itemId: Long, qty: Int = 1) = Observable.fromCallable {
+	fun addToCartOrUpdate(itemId: Long, qty: Int = 1): Observable<Int> = Observable.fromCallable {
 		Thread.sleep(syntheticDelay)
 		cartItemMap.merge(itemId, qty) { o, n -> o + n }
 		cartItemMap.size
 	}.subscribeOn(Schedulers.io())
 
-	fun getCart() = Observable.fromCallable {
+	fun getCart(): Observable<Cart> = Observable.fromCallable {
 		Thread.sleep(syntheticDelay)
 		Cart(getCartItems(), cartNote)
 	}.subscribeOn(Schedulers.io())
@@ -196,19 +196,19 @@ class FoodRepo {
 		CartItem(getItem(itemId), qty)
 	}
 
-	fun removeFromCart(itemId: Long) = Observable.fromCallable {
+	fun removeFromCart(itemId: Long): Observable<List<CartItem>> = Observable.fromCallable {
 		Thread.sleep(syntheticDelay)
 		cartItemMap.remove(itemId)
 		getCartItems()
 	}.subscribeOn(Schedulers.io())
 
-	fun setCartNote(note: String) = Observable.fromCallable {
+	fun setCartNote(note: String): Observable<String> = Observable.fromCallable {
 		Thread.sleep(syntheticDelay)
 		cartNote = note
 		cartNote
 	}.subscribeOn(Schedulers.io())
 
-	fun checkout() = Observable.fromCallable {
+	fun checkout(): Observable<Unit> = Observable.fromCallable {
 		Thread.sleep(syntheticDelay)
 		cartItemMap.clear()
 		cartNote = ""

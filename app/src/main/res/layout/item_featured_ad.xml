@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+	<data>
+
+		<variable
+			name="ad"
+			type="com.dindintest.data.models.FeaturedAd" />
+	</data>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		app:bgImgUrl="@{ad.imgUrl}"
+		tools:background="#649"
+		tools:context=".ui.home.FeaturedAdFragment">
+
+		<TextView
+			android:id="@+id/title"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginHorizontal="@dimen/featured_ad_margin"
+			android:text="@{ad.title}"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+			app:layout_constrainedWidth="true"
+			app:layout_constraintBottom_toTopOf="@id/subtitle"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constrainedHeight="true"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_chainStyle="packed"
+			tools:text="Ad Title Goes Here" />
+
+		<TextView
+			android:id="@+id/subtitle"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginHorizontal="@dimen/featured_ad_margin"
+			android:layout_marginTop="@dimen/featured_ad_subtitle_margin"
+			android:text="@{ad.subtitle}"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+			app:layout_constrainedWidth="true"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constrainedHeight="true"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/title"
+			tools:text="Ad Subtitle Goes Here, and goes on and on and on" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
