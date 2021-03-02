@@ -5,7 +5,7 @@
 
 		<variable
 			name="menu"
-			type="com.dindintest.data.models.Menu" />
+			type="com.dindintest.data.model.Menu" />
 	</data>
 
 	<androidx.constraintlayout.widget.ConstraintLayout
@@ -47,7 +47,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@{menu.tags[0]}"
-				app:isVisible="@{menu.tags.size() > 0}"
+				app:visibleIf="@{menu.tags.size() > 0}"
 				tools:visibility="visible"
 				tools:text="filter 1" />
 
@@ -57,7 +57,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@{menu.tags[1]}"
-				app:isVisible="@{menu.tags.size() > 1}"
+				app:visibleIf="@{menu.tags.size() > 1}"
 				tools:visibility="visible"
 				tools:text="filter 2" />
 
@@ -67,7 +67,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@{menu.tags[2]}"
-				app:isVisible="@{menu.tags.size() > 2}"
+				app:visibleIf="@{menu.tags.size() > 2}"
 				tools:visibility="visible"
 				tools:text="filter 3" />
 
@@ -77,7 +77,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@{menu.tags[3]}"
-				app:isVisible="@{menu.tags.size() > 3}"
+				app:visibleIf="@{menu.tags.size() > 3}"
 				tools:visibility="visible"
 				tools:text="filter 4" />
 
@@ -87,17 +87,20 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@{menu.tags[4]}"
-				app:isVisible="@{menu.tags.size() > 4}"
+				app:visibleIf="@{menu.tags.size() > 4}"
 				tools:visibility="visible"
 				tools:text="filter 5" />
 		</com.google.android.material.chip.ChipGroup>
 
-		<com.airbnb.epoxy.EpoxyRecyclerView
+		<androidx.recyclerview.widget.RecyclerView
 			android:id="@+id/items"
 			android:layout_width="match_parent"
 			android:layout_height="0dp"
 			android:paddingTop="@dimen/menu_item_margin"
 			app:layout_constraintTop_toBottomOf="@id/filters"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+			app:list="@{menu.items}"
 			tools:itemCount="3"
 			tools:listitem="@layout/item_menu_item" />
 

@@ -8,7 +8,7 @@
 
 		<variable
 			name="item"
-			type="com.dindintest.data.models.Item" />
+			type="com.dindintest.data.model.Item" />
 	</data>
 
 	<androidx.cardview.widget.CardView

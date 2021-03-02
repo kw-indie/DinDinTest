@@ -3,10 +3,10 @@ package com.dindintest.ui.home
 import com.airbnb.mvrx.Async
 import com.airbnb.mvrx.MavericksState
 import com.airbnb.mvrx.Uninitialized
-import com.dindintest.data.models.Cart
-import com.dindintest.data.models.CartItem
-import com.dindintest.data.models.FeaturedAd
-import com.dindintest.data.models.Menu
+import com.dindintest.data.model.Cart
+import com.dindintest.data.model.CartItem
+import com.dindintest.data.model.FeaturedAd
+import com.dindintest.data.model.Menu
 
 data class HomeState(
     val featuredAds: Async<List<FeaturedAd>> = Uninitialized,

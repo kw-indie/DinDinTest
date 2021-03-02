@@ -1,34 +1,27 @@
 package com.dindintest.data
 
-import com.dindintest.data.models.*
+import com.dindintest.data.model.*
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
-class FoodRepo {
+object FoodRepo {
+	private const val syntheticDelay = 500L
 
-	private val syntheticDelay = 500L
-
+	// region data
 	private val featuredAds = listOf(
 		FeaturedAd(
 			1,
-			"https://d1csarkz8obe9u.cloudfront.net/posterpreviews/weekly-specials-design-template-17b7ec21ef3f34f41b868471f1600f8d_screen.jpg",
-			"Wednesday Sales!",
-			"Buy 1 get 2. Don't miss out!!"
+			"https://d1csarkz8obe9u.cloudfront.net/posterpreviews/weekly-specials-design-template-17b7ec21ef3f34f41b868471f1600f8d_screen.jpg"
 		),
 		FeaturedAd(
 			2,
-			"https://ocsunsetgrille.com/wp-content/uploads/2015/05/2019-1004-Weekly-Specials.jpg",
-			"Thursday Sales!",
-			"Buy 2 get 3. Don't miss out!!"
+			"https://ocsunsetgrille.com/wp-content/uploads/2015/05/2019-1004-Weekly-Specials.jpg"
 		),
 		FeaturedAd(
 			3,
-			"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3sDHFAJ0xyPb64qspaNqTZzEF2xfEghYPVA&usqp=CAU",
-			"Friday Sales!",
-			"Thank God it's Friday!!"
+			"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3sDHFAJ0xyPb64qspaNqTZzEF2xfEghYPVA&usqp=CAU"
 		)
 	)
-
 	private val italianItems = listOf(
 		Item(
 			1,
@@ -159,13 +152,14 @@ class FoodRepo {
 		)
 	)
 	private val allItems = italianItems + frenchItems + drinks + burgers
-
 	private val menus = listOf(
 		Menu(1, "Italian", italianItems),
 		Menu(2, "French", frenchItems),
 		Menu(3, "Drinks", drinks),
 		Menu(4, "Burgers", burgers)
 	)
+	// endregion
+
 	private val cartItemMap = mutableMapOf<Long, Int>()
 	private var cartNote = ""
 

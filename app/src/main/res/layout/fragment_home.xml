@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+	<data>
+
+		<variable
+			name="state"
+			type="com.dindintest.ui.home.HomeState" />
+	</data>
+
 	<androidx.coordinatorlayout.widget.CoordinatorLayout
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -17,6 +24,7 @@
 				android:id="@+id/featured_ads"
 				android:layout_width="match_parent"
 				android:layout_height="0dp"
+				app:asyncList="@{state.featuredAds}"
 				app:layout_constraintHeight_percent=".75"
 				app:layout_constraintTop_toTopOf="parent"
 				tools:background="#346" />
@@ -61,7 +69,8 @@
 				android:layout_height="0dp"
 				android:background="?attr/colorSurface"
 				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintTop_toBottomOf="@id/menu_tabs" />
+				app:layout_constraintTop_toBottomOf="@id/menu_tabs"
+				app:asyncList="@{state.menus}" />
 		</androidx.constraintlayout.motion.widget.MotionLayout>
 
 		<com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -2,19 +2,31 @@ package com.dindintest.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
+import android.widget.CompoundButton
+import androidx.core.view.children
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.dindintest.data.models.Menu
+import com.dindintest.data.model.Menu
 import com.dindintest.databinding.ItemMenuBinding
+import com.google.android.material.chip.Chip
 
-class MenusAdapter : ListAdapter<Menu, MenusAdapter.MenuViewHolder>(DiffCallback()) {
+class MenusAdapter(
+	private val buyListener: MenuItemAdapter.OnBuyClick
+) : ListAdapter<Menu, MenusAdapter.MenuViewHolder>(HashItemCallback()) {
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {
-		val controller = ItemController()
 		return MenuViewHolder(
-			ItemMenuBinding.inflate(LayoutInflater.from(parent.context), parent, false),
-			controller
+			ItemMenuBinding.inflate(LayoutInflater.from(parent.context), parent, false).apply {
+				val itemAdapter = MenuItemAdapter(buyListener)
+				val listener = CompoundButton.OnCheckedChangeListener { chip, isChecked ->
+					itemAdapter.filter(chip.text.toString(), isChecked)
+				}
+				items.adapter = itemAdapter
+				filters.children.forEach {
+					val chip = it as Chip
+					chip.setOnCheckedChangeListener(listener)
+				}
+			}
 		)
 	}
 
@@ -22,31 +34,14 @@ class MenusAdapter : ListAdapter<Menu, MenusAdapter.MenuViewHolder>(DiffCallback
 		holder.bind(getItem(position))
 	}
 
-	private class DiffCallback : DiffUtil.ItemCallback<Menu>() {
-		override fun areItemsTheSame(oldItem: Menu, newItem: Menu): Boolean {
-			return oldItem.id == newItem.id
-		}
-
-		override fun areContentsTheSame(oldItem: Menu, newItem: Menu): Boolean {
-			return oldItem.id == newItem.id
-		}
-	}
-
 	class MenuViewHolder(
-		private val binding: ItemMenuBinding,
-		private val controller: ItemController
+		private val binding: ItemMenuBinding
 	) : RecyclerView.ViewHolder(binding.root) {
 
-		init {
-			binding.items.adapter = controller.adapter
-		}
-
-		fun bind(m: Menu) {
-			binding.apply {
-				menu = m
-				controller.setData(m.items)
-				executePendingBindings()
-			}
+		fun bind(menu: Menu) {
+			binding.menu = menu
+			binding.executePendingBindings()
 		}
 	}
+
 }

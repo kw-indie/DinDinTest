@@ -2,35 +2,29 @@ package com.dindintest.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.dindintest.data.models.FeaturedAd
+import com.dindintest.data.model.FeaturedAd
 import com.dindintest.databinding.ItemFeaturedAdBinding
 
-class FeaturedAdsAdapter :
-	ListAdapter<FeaturedAd, FeaturedAdsAdapter.AdViewHolder>(DiffCallback()) {
+class FeaturedAdsAdapter(
+	private val clickListener: OnAdClickListener
+) : ListAdapter<FeaturedAd, FeaturedAdsAdapter.AdViewHolder>(HashItemCallback()) {
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdViewHolder {
 		return AdViewHolder(
 			ItemFeaturedAdBinding.inflate(
 				LayoutInflater.from(parent.context), parent, false
-			)
+			).apply {
+				root.setOnClickListener {
+					clickListener.onClick(ad!!.id)
+				}
+			}
 		)
 	}
 
 	override fun onBindViewHolder(holder: AdViewHolder, position: Int) {
 		holder.bind(getItem(position))
-	}
-
-	private class DiffCallback : DiffUtil.ItemCallback<FeaturedAd>() {
-		override fun areItemsTheSame(oldItem: FeaturedAd, newItem: FeaturedAd): Boolean {
-			return oldItem.id == newItem.id
-		}
-
-		override fun areContentsTheSame(oldItem: FeaturedAd, newItem: FeaturedAd): Boolean {
-			return oldItem.id == newItem.id
-		}
 	}
 
 	class AdViewHolder(

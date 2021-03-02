@@ -3,7 +3,6 @@ package com.dindintest.ui.home
 import com.airbnb.mvrx.BaseMvRxViewModel
 import com.airbnb.mvrx.MavericksViewModelFactory
 import com.airbnb.mvrx.ViewModelContext
-import com.dindintest.App
 import com.dindintest.data.FoodRepo
 
 class HomeViewModel(
@@ -43,7 +42,7 @@ class HomeViewModel(
 
 	companion object : MavericksViewModelFactory<HomeViewModel, HomeState> {
 		override fun create(viewModelContext: ViewModelContext, state: HomeState): HomeViewModel {
-			val repo = viewModelContext.app<App>().repo
+			val repo = FoodRepo
 			return HomeViewModel(state, repo)
 		}
 	}

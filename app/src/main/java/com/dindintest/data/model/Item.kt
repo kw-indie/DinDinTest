@@ -1,7 +1,7 @@
-package com.dindintest.data.models
+package com.dindintest.data.model
 
 data class Item(
-	val id: Long,
+	override val id: Long,
 	val imgUrl: String,
 	val name: String,
 	val desc: String,
@@ -10,4 +10,4 @@ data class Item(
 	val prop2: String,
 	val options: List<String>,
 	val tags: List<String>
-)
+) : IDed
