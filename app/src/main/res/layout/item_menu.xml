@@ -80,23 +80,12 @@
 				app:visibleIf="@{menu.tags.size() > 3}"
 				tools:visibility="visible"
 				tools:text="filter 4" />
-
-			<com.google.android.material.chip.Chip
-				style="@style/Widget.MaterialComponents.Chip.Filter.Outlined"
-				android:id="@+id/filter5"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@{menu.tags[4]}"
-				app:visibleIf="@{menu.tags.size() > 4}"
-				tools:visibility="visible"
-				tools:text="filter 5" />
 		</com.google.android.material.chip.ChipGroup>
 
 		<androidx.recyclerview.widget.RecyclerView
 			android:id="@+id/items"
 			android:layout_width="match_parent"
 			android:layout_height="0dp"
-			android:paddingTop="@dimen/menu_item_margin"
 			app:layout_constraintTop_toBottomOf="@id/filters"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

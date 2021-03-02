@@ -60,6 +60,7 @@
 				android:layout_height="@dimen/menu_tabs_height"
 				android:layout_marginTop="@dimen/menu_corner_radius_neg"
 				android:background="@drawable/menu_corners"
+				android:paddingTop="@dimen/menu_corner_radius"
 				app:layout_constraintTop_toBottomOf="@id/featured_ads"
 				app:tabIndicatorHeight="0dp" />
 
@@ -68,9 +69,9 @@
 				android:layout_width="match_parent"
 				android:layout_height="0dp"
 				android:background="?attr/colorSurface"
+				app:asyncList="@{state.menus}"
 				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintTop_toBottomOf="@id/menu_tabs"
-				app:asyncList="@{state.menus}" />
+				app:layout_constraintTop_toBottomOf="@id/menu_tabs" />
 		</androidx.constraintlayout.motion.widget.MotionLayout>
 
 		<com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -80,5 +81,25 @@
 			android:layout_gravity="bottom|end"
 			android:layout_margin="@dimen/fab_margin"
 			app:srcCompat="@drawable/ic_cart" />
+
+		<TextView
+			android:id="@+id/badge"
+			android:layout_width="wrap_content"
+			android:layout_height="18dp"
+			android:maxWidth="36dp"
+			android:translationY="10dp"
+			android:translationX="-10dp"
+			android:paddingHorizontal="4dp"
+			android:elevation="7dp"
+			android:singleLine="true"
+			android:ellipsize="end"
+			android:background="@drawable/bg_badge"
+			android:textColor="@android:color/white"
+			android:textSize="12sp"
+			android:visibility="gone"
+			app:layout_anchor="@id/fab_open_cart"
+			app:layout_anchorGravity="end"
+			tools:visibility="visible"
+			tools:text="999" />
 	</androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
