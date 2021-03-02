@@ -8,7 +8,7 @@ import com.dindintest.data.model.FeaturedAd
 import com.dindintest.databinding.ItemFeaturedAdBinding
 
 class FeaturedAdsAdapter(
-	private val clickListener: OnAdClickListener
+	private val onAd: OnAdClick
 ) : ListAdapter<FeaturedAd, FeaturedAdsAdapter.AdViewHolder>(HashItemCallback()) {
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdViewHolder {
@@ -17,7 +17,7 @@ class FeaturedAdsAdapter(
 				LayoutInflater.from(parent.context), parent, false
 			).apply {
 				root.setOnClickListener {
-					clickListener.onClick(ad!!.id)
+					onAd.click(ad!!.id)
 				}
 			}
 		)
@@ -35,5 +35,9 @@ class FeaturedAdsAdapter(
 			binding.ad = ad
 			binding.executePendingBindings()
 		}
+	}
+
+	fun interface OnAdClick {
+		fun click(adId: Long)
 	}
 }

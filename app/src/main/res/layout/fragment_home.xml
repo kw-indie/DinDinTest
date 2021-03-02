@@ -18,7 +18,7 @@
 		<androidx.constraintlayout.motion.widget.MotionLayout
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			app:layoutDescription="@xml/main_scene">
+			app:layoutDescription="@xml/home_scene">
 
 			<androidx.viewpager2.widget.ViewPager2
 				android:id="@+id/featured_ads"
@@ -75,7 +75,7 @@
 		</androidx.constraintlayout.motion.widget.MotionLayout>
 
 		<com.google.android.material.floatingactionbutton.FloatingActionButton
-			android:id="@+id/fab_open_cart"
+			android:id="@+id/fab"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="bottom|end"
@@ -85,11 +85,11 @@
 		<TextView
 			android:id="@+id/badge"
 			android:layout_width="wrap_content"
-			android:layout_height="18dp"
-			android:maxWidth="36dp"
-			android:translationY="10dp"
-			android:translationX="-10dp"
-			android:paddingHorizontal="4dp"
+			android:layout_height="@dimen/badge_height"
+			android:maxWidth="@dimen/badge_max_width"
+			android:translationY="@dimen/badge_offset"
+			android:translationX="@dimen/badge_offset_neg"
+			android:paddingHorizontal="@dimen/badge_h_padding"
 			android:elevation="7dp"
 			android:singleLine="true"
 			android:ellipsize="end"
@@ -97,7 +97,7 @@
 			android:textColor="@android:color/white"
 			android:textSize="12sp"
 			android:visibility="gone"
-			app:layout_anchor="@id/fab_open_cart"
+			app:layout_anchor="@id/fab"
 			app:layout_anchorGravity="end"
 			tools:visibility="visible"
 			tools:text="999" />

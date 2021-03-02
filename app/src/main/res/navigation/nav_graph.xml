@@ -2,9 +2,19 @@
 <navigation
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/nav_graph"
 	app:startDestination="@id/homeFragment">
 	<fragment
 		android:id="@+id/homeFragment"
-		android:name="com.dindintest.ui.home.HomeFragment" />
+		android:name="com.dindintest.ui.home.HomeFragment"
+		tools:layout="@layout/fragment_home">
+		<action
+			android:id="@+id/action_open_checkout"
+			app:destination="@id/checkoutFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/checkoutFragment"
+		android:name="com.dindintest.ui.checkout.CheckoutFragment"
+		tools:layout="@layout/fragment_checkout" />
 </navigation>

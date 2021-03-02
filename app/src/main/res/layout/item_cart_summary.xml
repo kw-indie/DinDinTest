@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+	<data>
+
+		<variable
+			name="total"
+			type="Float" />
+	</data>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/cart_item_height"
+		android:padding="@dimen/cart_h_padding">
+
+		<TextView
+			android:id="@+id/total_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:labelFor="@id/total_value"
+			android:text="@string/total_label"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintBaseline_toBaselineOf="@id/total_value"
+			app:layout_constraintEnd_toStartOf="@id/total_value" />
+
+		<TextView
+			android:id="@+id/total_value"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/cart_item_spacing"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+			android:text="@{@string/price_format(total)}"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toEndOf="@id/total_label"
+			tools:text="299 usd" />
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

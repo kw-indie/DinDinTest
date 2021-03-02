@@ -8,7 +8,7 @@ import com.dindintest.data.model.Item
 import com.dindintest.databinding.ItemMenuItemBinding
 
 class MenuItemAdapter(
-	private val buyListener: OnBuyClick
+	private val onBuy: OnBuyClick
 ) : ListAdapter<Item, MenuItemAdapter.ItemViewHolder>(HashItemCallback()) {
 
 	private var unfiltered: List<Item>? = null
@@ -20,7 +20,7 @@ class MenuItemAdapter(
 				LayoutInflater.from(parent.context), parent, false
 			).apply {
 				addToCart.setOnClickListener {
-					buyListener.onClick(item!!.id)
+					onBuy.click(item!!.id)
 				}
 			}
 		)
@@ -57,6 +57,6 @@ class MenuItemAdapter(
 	}
 
 	fun interface OnBuyClick {
-		fun onClick(itemId: Long)
+		fun click(itemId: Long)
 	}
 }

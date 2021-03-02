@@ -6,37 +6,18 @@ import com.airbnb.mvrx.ViewModelContext
 import com.dindintest.data.FoodRepo
 
 class HomeViewModel(
-    initState: HomeState,
-    private val repo: FoodRepo
+	initState: HomeState,
+	private val repo: FoodRepo
 ) : BaseMvRxViewModel<HomeState>(initState) {
 
 	init {
 		repo.getFeaturedAds().execute { copy(featuredAds = it) }
 		repo.getMenus().execute { copy(menus = it) }
-		repo.getCart().execute { copy(cart = it) }
 	}
 
 	fun addToCart(itemId: Long) = withState {
 		repo.addToCartOrUpdate(itemId).execute {
 			copy(addOrUpdateItemRequest = it)
-		}
-	}
-
-	fun removeFromCart(itemId: Long) = withState {
-		repo.removeFromCart(itemId).execute {
-			copy(removeItemRequest = it)
-		}
-	}
-
-	fun setCartNote(note: String) = withState {
-		repo.setCartNote(note).execute {
-			copy(setNoteRequest = it)
-		}
-	}
-
-	fun checkout() = withState {
-		repo.checkout().execute {
-			copy(checkoutRequest = it)
 		}
 	}
 

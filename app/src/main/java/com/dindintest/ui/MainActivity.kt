@@ -7,12 +7,12 @@ import com.dindintest.R
 
 class MainActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		setContentView(R.layout.activity_main)
 
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-        window.statusBarColor = 0
-    }
+		WindowCompat.setDecorFitsSystemWindows(window, false)
+		window.statusBarColor = 0
+	}
 
 }

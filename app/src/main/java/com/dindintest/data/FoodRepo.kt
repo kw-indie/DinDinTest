@@ -11,15 +11,15 @@ object FoodRepo {
 	private val featuredAds = listOf(
 		FeaturedAd(
 			1,
-			"https://d1csarkz8obe9u.cloudfront.net/posterpreviews/weekly-specials-design-template-17b7ec21ef3f34f41b868471f1600f8d_screen.jpg"
+			"https://i.pinimg.com/736x/f9/a0/2a/f9a02a50f05caf986b18a21e67fff419.jpg"
 		),
 		FeaturedAd(
 			2,
-			"https://ocsunsetgrille.com/wp-content/uploads/2015/05/2019-1004-Weekly-Specials.jpg"
+			"https://i1.wp.com/www.eatthis.com/wp-content/uploads/2017/10/dark-chocolate-bar-squares.jpg?fit=1024%2C750&ssl=1"
 		),
 		FeaturedAd(
 			3,
-			"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3sDHFAJ0xyPb64qspaNqTZzEF2xfEghYPVA&usqp=CAU"
+			"https://img.freepik.com/free-vector/hamburger-ads-design-blackboard-background-3d-illustration_317396-394.jpg?size=626&ext=jpg&ga=GA1.2.1935103904.1612742400"
 		)
 	)
 	private val italianItems = listOf(
@@ -32,7 +32,7 @@ object FoodRepo {
 			"500gr",
 			"20cm",
 			listOf("veggies", "cheese"),
-			listOf("italian", "hot")
+			listOf("vegan", "hot")
 		),
 		Item(
 			2,
@@ -43,7 +43,7 @@ object FoodRepo {
 			"650gr",
 			"25cm",
 			listOf("cheese", "chicken", "bbq sauce"),
-			listOf("italian", "hot")
+			listOf("special", "hot")
 		),
 		Item(
 			3,
@@ -54,7 +54,7 @@ object FoodRepo {
 			"600gr",
 			"22cm",
 			listOf("cheese", "cheese", "more cheese"),
-			listOf("italian", "hot")
+			listOf("hot")
 		)
 	)
 	private val frenchItems = listOf(
@@ -67,7 +67,7 @@ object FoodRepo {
 			"200gr",
 			"1 person",
 			listOf("veggies", "olives"),
-			listOf("french", "salad")
+			listOf("vegan")
 		),
 		Item(
 			5,
@@ -78,7 +78,7 @@ object FoodRepo {
 			"300gr",
 			"1 person",
 			listOf("ice cream"),
-			listOf("french")
+			listOf("bakery")
 		),
 		Item(
 			6,
@@ -89,7 +89,7 @@ object FoodRepo {
 			"700gr",
 			"1 person",
 			listOf("full meal", "salad"),
-			listOf("french", "hot")
+			listOf("meat", "hot")
 		)
 	)
 	private val drinks = listOf(
@@ -106,6 +106,17 @@ object FoodRepo {
 		),
 		Item(
 			8,
+			"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgOfy3Ri1aysha8wbBD6qWovxUWKnS1gZ6QEY9XWJnjmDLX7bxMXInZmKZfWpZ_d5hlLs&usqp=CAU&ec=45780877",
+			"Pepsi diet",
+			"Ice cold pepsi diet",
+			2.99f,
+			"350ml",
+			"",
+			listOf("ice cubes"),
+			listOf("cold", "diet")
+		),
+		Item(
+			9,
 			"https://cdn.tasteatlas.com/images/dishes/5291b5f2fcee42849cd84a03bff55e0a.jpg?w=600&h=450",
 			"Milkshake",
 			"Chocolate milkshake",
@@ -118,7 +129,7 @@ object FoodRepo {
 	)
 	private val burgers = listOf(
 		Item(
-			9,
+			10,
 			"https://wlxaj1j3fea9rr7r20slpixw-wpengine.netdna-ssl.com/wp-content/uploads/2017/10/Fast-food-combo-meal.jpg",
 			"Hamburger",
 			"The original hamburger",
@@ -126,10 +137,10 @@ object FoodRepo {
 			"1 person",
 			"1200 cal",
 			listOf("fries", "ketchup", "mayo", "cola"),
-			listOf("american", "fastFood", "hot")
+			listOf("fastFood", "hot")
 		),
 		Item(
-			10,
+			11,
 			"https://www.kfcjamaica.com/sites/default/files/2018-01/KFC_eComm_thumb_eComm_Meal%20Deal_0.jpg",
 			"Chicken legs",
 			"Best chicken legs ever",
@@ -137,10 +148,10 @@ object FoodRepo {
 			"1 person",
 			"1500 cal",
 			listOf("fries", "ketchup", "special sauce", "cola"),
-			listOf("american", "fastFood", "hot")
+			listOf("fastFood", "hot")
 		),
 		Item(
-			11,
+			12,
 			"https://www.kfcjamaica.com/sites/default/files/2019-04/Wings%208.jpg",
 			"Chicken wings",
 			"Wings to help you stick more to your chair instead of flying",
@@ -148,7 +159,7 @@ object FoodRepo {
 			"kids meal",
 			"800 cal",
 			listOf("saucy sauce", "fries", "milk"),
-			listOf("american", "fastFood", "hot")
+			listOf("fastFood", "hot")
 		)
 	)
 	private val allItems = italianItems + frenchItems + drinks + burgers
@@ -190,10 +201,10 @@ object FoodRepo {
 		CartItem(getItem(itemId), qty)
 	}
 
-	fun removeFromCart(itemId: Long): Observable<List<CartItem>> = Observable.fromCallable {
+	fun removeFromCart(itemId: Long): Observable<Cart> = Observable.fromCallable {
 		Thread.sleep(syntheticDelay)
 		cartItemMap.remove(itemId)
-		getCartItems()
+		Cart(getCartItems(), cartNote)
 	}.subscribeOn(Schedulers.io())
 
 	fun setCartNote(note: String): Observable<String> = Observable.fromCallable {
